@@ -21,4 +21,6 @@ static const char *message = "Suckless: Software that sucks less.";
 static const char *text_color = "#ffffff";
 
 /* text size (must be a valid size) */
-static const char *font_name = "6x10";
+// static const char *font_name = "6x10";
+// static const char *font_name = "6x13";
+static const char *font_name = "-adobe-helvetica-bold-r-normal--0-0-75-75-p-0-iso10646-1";
