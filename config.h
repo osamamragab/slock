@@ -15,7 +15,7 @@ static const int failonclear = 1;
 static const int monitortime = 5;
 
 /* default message */
-static const char *message = "Suckless: Software that sucks less.";
+static const char *message = "wubbalubbadubdub";
 
 /* text color */
 static const char *text_color = "#ffffff";
