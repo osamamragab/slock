@@ -15,7 +15,7 @@ static const int failonclear = 1;
 static const int monitortime = 5;
 
 /* time in seconds to cancel lock with mouse movement */
-static const int timetocancel = 4;
+static int timetocancel = 4;
 
 /* default message */
 static const char *message = "Suckless: Software that sucks less.";
