@@ -11,6 +11,9 @@ static const char *colorname[NUMCOLS] = {
 /* treat a cleared input like a wrong password (color) */
 static const int failonclear = 0;
 
+/* play bell on failure */
+static const int failbell = 0;
+
 /* time in seconds before the monitor shuts down */
 static const int monitortime = 5;
 
@@ -31,4 +34,4 @@ static const char *font_name = "10x20";
 static const int failcount = 5;
 
 /* command to be executed after [failcount] failed password attempts */
-static const char *failcommand = "doas poweroff";
+static const char *failcommand = "shutdown";

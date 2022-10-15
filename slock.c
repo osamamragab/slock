@@ -271,6 +271,7 @@ readpw(Display *dpy, struct xrandr *rr, struct lock **locks, int nscreens,
 			case XF86XK_MonBrightnessDown:
 			case XF86XK_MonBrightnessUp:
 				XSendEvent(dpy, DefaultRootWindow(dpy), True, KeyPressMask, &ev);
+				break;
 			case XK_Return:
 				passwd[len] = '\0';
 				errno = 0;
@@ -279,7 +280,8 @@ readpw(Display *dpy, struct xrandr *rr, struct lock **locks, int nscreens,
 				else
 					running = !!strcmp(inputhash, hash);
 				if (running) {
-					XBell(dpy, 100);
+					if (failbell)
+						XBell(dpy, 100);
 					failure = 1;
 					failtrack++;
 
