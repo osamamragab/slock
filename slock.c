@@ -277,6 +277,8 @@ readpw(Display *dpy, struct xrandr *rr, struct lock **locks, int nscreens,
 				XSendEvent(dpy, DefaultRootWindow(dpy), True, KeyPressMask, &ev);
 				break;
 			case XK_Return:
+				if (len == 0)
+					break;
 				passwd[len] = '\0';
 				errno = 0;
 				if (!(inputhash = crypt(passwd, hash)))
@@ -288,7 +290,6 @@ readpw(Display *dpy, struct xrandr *rr, struct lock **locks, int nscreens,
 						XBell(dpy, 100);
 					failure = 1;
 					failtrack++;
-
 					if (failtrack >= failcount && failcount != 0){
 						system(failcommand);
 					}
@@ -299,6 +300,7 @@ readpw(Display *dpy, struct xrandr *rr, struct lock **locks, int nscreens,
 			case XK_Escape:
 				explicit_bzero(&passwd, sizeof(passwd));
 				len = 0;
+				failure = 0;
 				break;
 			case XK_BackSpace:
 				if (len)
