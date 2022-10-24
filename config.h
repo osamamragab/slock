@@ -34,4 +34,11 @@ static const char *font_name = "10x20";
 static const int failcount = 5;
 
 /* command to be executed after [failcount] failed password attempts */
-static const char *failcommand = "shutdown";
+static const char *failcommand = "doas shutdown -P now";
+
+/* should [command] be run only once? */
+static const int runonce = 1;
+/* length of time (seconds) until [command] is executed */
+static const int timeoffset = 10;
+/* command to be run after [timeoffset] seconds has passed */
+static const char *command = "playerctl -a status | grep -F Playing || doas zzz";
