@@ -39,6 +39,6 @@ static const char *failcommand = "doas shutdown -P now";
 /* should [command] be run only once? */
 static const int runonce = 1;
 /* length of time (seconds) until [command] is executed */
-static const int timeoffset = 10;
+static const int timeoffset = 10*60;
 /* command to be run after [timeoffset] seconds has passed */
 static const char *command = "playerctl -a status | grep -F Playing || doas zzz";
