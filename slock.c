@@ -461,9 +461,6 @@ main(int argc, char **argv) {
 	case 'm':
 		message = EARGF(usage());
 		break;
-	case 'l':
-		timetocancel = 0;
-		break;
 	case 'f':
 		if (!(dpy = XOpenDisplay(NULL)))
 			die("slock: cannot open display\n");
