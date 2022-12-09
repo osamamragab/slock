@@ -25,10 +25,3 @@ static const char *text_color = "#ffffff";
 
 /* text size (must be a valid size) */
 static const char *font_name = "10x20";
-
-/* number of failed password attempts until failcommand is executed.
-   Set to 0 to disable */
-static const int failcount = 5;
-
-/* command to be executed after [failcount] failed password attempts */
-static const char *failcommand = "shutdown";
