@@ -1,6 +1,6 @@
 /* user and group to drop privileges to */
 static const char *user  = "nobody";
-static const char *group = "nogroup";
+static const char *group = "nobody";
 
 static const char *colorname[NUMCOLS] = {
 	[INIT]   = "#000000",   /* after initialization */
@@ -24,4 +24,4 @@ static const char *message = "wubbalubbadubdub";
 static const char *text_color = "#ffffff";
 
 /* text size (must be a valid size) */
-static const char *font_name = "10x20";
+static const char *font_name = "6x13";
