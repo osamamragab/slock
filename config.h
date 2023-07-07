@@ -24,4 +24,4 @@ static const char *message = "wubbalubbadubdub";
 static const char *text_color = "#ffffff";
 
 /* text size (must be a valid size) */
-static const char *font_name = "6x13";
+static const char *font_name = "lucidasans-14";
