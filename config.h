@@ -16,12 +16,3 @@ static const int failbell = 0;
 
 /* time in seconds before the monitor shuts down */
 static const int monitortime = 5;
-
-/* default message */
-static const char *message = "wubbalubbadubdub";
-
-/* text color */
-static const char *text_color = "#ffffff";
-
-/* text size (must be a valid size) */
-static const char *font_name = "lucidasans-14";

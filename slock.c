@@ -331,6 +331,7 @@ main(int argc, char **argv) {
 	gid_t dgid;
 	const char *hash;
 	Display *dpy;
+	int s, nlocks, nscreens;
 	CARD16 standby, suspend, off;
 
 	ARGBEGIN {
