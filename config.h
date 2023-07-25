@@ -16,3 +16,9 @@ static const int failbell = 0;
 
 /* time in seconds before the monitor shuts down */
 static const int monitortime = 5;
+
+ResourcePref resources[] = {
+	{ "background", STRING, &colorname[INIT] },
+	{ "backgroundSel", STRING, &colorname[INPUT] },
+	{ "color1", STRING, &colorname[FAILED] },
+};
