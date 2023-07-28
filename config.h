@@ -19,6 +19,6 @@ static const int monitortime = 5;
 
 ResourcePref resources[] = {
 	{ "background", STRING, &colorname[INIT] },
-	{ "backgroundSel", STRING, &colorname[INPUT] },
+	{ "color0", STRING, &colorname[INPUT] },
 	{ "color1", STRING, &colorname[FAILED] },
 };
