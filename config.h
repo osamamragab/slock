@@ -3,9 +3,9 @@ static const char *user  = "nobody";
 static const char *group = "nogroup";
 
 static const char *colorname[NUMCOLS] = {
-	[INIT]   = "#000000",   /* after initialization */
-	[INPUT]  = "#1c1e1f",   /* during input */
-	[FAILED] = "#cc3333",   /* wrong password */
+	[INIT]   = "#242933",   /* after initialization */
+	[INPUT]  = "#3b4252",   /* during input */
+	[FAILED] = "#bf616a",   /* wrong password */
 };
 
 /* treat a cleared input like a wrong password (color) */
@@ -16,9 +16,3 @@ static const int failbell = 0;
 
 /* time in seconds before the monitor shuts down */
 static const int monitortime = 5;
-
-ResourcePref resources[] = {
-	{ "background", STRING, &colorname[INIT] },
-	{ "color0", STRING, &colorname[INPUT] },
-	{ "color1", STRING, &colorname[FAILED] },
-};
