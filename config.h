@@ -12,4 +12,4 @@ static const char *colorname[NUMCOLS] = {
 static const int failonclear = 0;
 
 /* play bell on failure */
-static const int failbell = 0;
+static const int failbell = 1;
