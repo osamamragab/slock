@@ -13,6 +13,3 @@ static const int failonclear = 0;
 
 /* play bell on failure */
 static const int failbell = 0;
-
-/* time in seconds before the monitor shuts down */
-static const int monitortime = 5;
