@@ -179,11 +179,8 @@ readpw(Display *dpy, struct xrandr *rr, struct lock **locks, int nscreens,
 					fprintf(stderr, "slock: crypt: %s\n", strerror(errno));
 				else
 					running = !!strcmp(inputhash, hash);
-				if (running) {
-					if (failbell)
-						XBell(dpy, 100);
+				if (running)
 					failure = 1;
-				}
 				explicit_bzero(&passwd, sizeof(passwd));
 				len = 0;
 				break;
