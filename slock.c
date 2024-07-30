@@ -46,19 +46,6 @@ struct xrandr {
 	int errbase;
 };
 
-/* Xresources preferences */
-enum resource_type {
-	STRING = 0,
-	INTEGER = 1,
-	FLOAT = 2
-};
-
-typedef struct {
-	char *name;
-	enum resource_type type;
-	void *dst;
-} ResourcePref;
-
 #include "config.h"
 
 static void
@@ -325,55 +312,26 @@ lockscreen(Display *dpy, struct xrandr *rr, int screen)
 	return NULL;
 }
 
-int
-resource_load(XrmDatabase db, char *name, enum resource_type rtype, void *dst)
-{
-	char **sdst = dst;
-	int *idst = dst;
-	float *fdst = dst;
-
-	char fullname[256];
-	char fullclass[256];
-	char *type;
-	XrmValue ret;
-
-	snprintf(fullname, sizeof(fullname), "%s.%s", "slock", name);
-	snprintf(fullclass, sizeof(fullclass), "%s.%s", "Slock", name);
-	fullname[sizeof(fullname) - 1] = fullclass[sizeof(fullclass) - 1] = '\0';
-
-	XrmGetResource(db, fullname, fullclass, &type, &ret);
-	if (ret.addr == NULL || strncmp("String", type, 64))
-		return 1;
-
-	switch (rtype) {
-	case STRING:
-		*sdst = ret.addr;
-		break;
-	case INTEGER:
-		*idst = strtoul(ret.addr, NULL, 10);
-		break;
-	case FLOAT:
-		*fdst = strtof(ret.addr, NULL);
-		break;
-	}
-	return 0;
-}
-
-void
-load_xresources(Display *dpy)
-{
-	char *resm;
-	XrmDatabase db;
-	ResourcePref *p;
-
+static void
+loadxresources(Display *dpy) {
 	XrmInitialize();
-	resm = XResourceManagerString(dpy);
-	if (!resm)
+	char* xrm = XResourceManagerString(dpy);
+	if (!xrm) {
 		return;
-
-	db = XrmGetStringDatabase(resm);
-	for (p = resources; p < resources + LEN(resources); p++)
-		resource_load(db, p->name, p->type, p->dst);
+	}
+	char *type;
+	XrmDatabase xdb = XrmGetStringDatabase(xrm);
+	XrmValue xval;
+	if (XrmGetResource(xdb, "slock.color0", "*", &type, &xval)){
+		colorname[INIT] = strdup(xval.addr);
+	}
+	if (XrmGetResource(xdb, "slock.color4", "*", &type, &xval)) {
+		colorname[INPUT] = strdup(xval.addr);
+	}
+	if (XrmGetResource(xdb, "slock.color1", "*", &type, &xval)) {
+		colorname[FAILED] = strdup(xval.addr);
+	}
+	XrmDestroyDatabase(xdb);
 }
 
 static void
@@ -434,7 +392,7 @@ main(int argc, char **argv) {
 	if (setuid(duid) < 0)
 		die("slock: setuid: %s\n", strerror(errno));
 
-	load_xresources(dpy);
+	loadxresources(dpy);
 
 	/* check for Xrandr support */
 	rr.active = XRRQueryExtension(dpy, &rr.evbase, &rr.errbase);
